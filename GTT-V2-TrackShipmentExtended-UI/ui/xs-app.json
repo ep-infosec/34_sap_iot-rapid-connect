@@ -1,0 +1,48 @@
+{
+  "welcomeFile": "/index.html",
+  "authenticationMethod": "route",
+  "logout": {
+    "logoutEndpoint": "/do/logout"
+  },
+  "routes": [
+    {
+      "source": "^/trackshipments/sap/logistics/gtt/sample/sst/odata/v1/(.*)$",
+      "target": "sap/logistics/gtt/sample/sst/odata/v1/$1",
+      "destination": "lbn-iot-gtt-sst-api",
+      "scope": ["$XSAPPNAME.sst.r"]
+    },
+    {
+      "source": "^/trackshipments/sap/logistics/gtt/sample/sst/rest/v1/(.*)$",
+      "target": "sap/logistics/gtt/sample/sst/rest/v1/$1",
+      "httpMethods": ["GET"],
+      "destination": "lbn-iot-gtt-sst-api",
+      "scope": ["$XSAPPNAME.sst.r"]
+    },
+    {
+      "source": "^/trackshipments/sap/logistics/gtt/sample/sst/rest/v1/(.*)$",
+      "target": "sap/logistics/gtt/sample/sst/rest/v1/$1",
+      "httpMethods": ["POST"],
+      "destination": "lbn-iot-gtt-sst-api",
+      "scope": ["$XSAPPNAME.sst.w"]
+    },
+    {
+      "source": "^/trackshipments/iot/(.*)$",
+      "target": "/$1",
+      "httpMethods": ["GET"],
+      "destination": "lbn-iot-gtt-sst-extend-api",
+      "scope": ["$XSAPPNAME.sst.r"]
+    },
+    {
+      "source": "^/shipmentLogTest/(.*)$",
+      "target": "/$1",
+      "httpMethods": ["GET"],
+      "destination": "lbn-iot-gtt-sst-eventlogs-api"
+    },
+    {
+      "source": "^(.*)$",
+      "target": "$1",
+      "service": "html5-apps-repo-rt",
+      "authenticationType": "xsuaa"
+    }
+  ]
+}
